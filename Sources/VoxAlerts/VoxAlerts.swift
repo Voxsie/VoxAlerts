@@ -1,6 +1,8 @@
-public struct VoxAlerts {
-    public private(set) var text = "Hello, World!"
+public struct VoxAlert {
+    
+    public private(set) var options: VoxOptions
 
-    public init() {
+    public init(options: VoxOptions) {
+        self.options = options
     }
 }
