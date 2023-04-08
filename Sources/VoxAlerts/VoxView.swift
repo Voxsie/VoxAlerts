@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class VoxView: UIView {
+final public class VoxView: UIView {
     
     fileprivate lazy var logoImageView: UIImageView = {
         let imageView = UIImageView()
