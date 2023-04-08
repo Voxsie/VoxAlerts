@@ -9,9 +9,11 @@ import Foundation
 
 public struct VoxOptions {
     
-    public var type: VoxOptions.AlertType
+    public var type: VoxOptions.AlertType? = .success
     
-    public var hapticFeedbak: VoxOptions.FeedbackType
+    public var hapticFeedbak: VoxOptions.FeedbackType = .success
+    
+    public var position: VoxOptions.AlertPosition = .top
 }
 
 
