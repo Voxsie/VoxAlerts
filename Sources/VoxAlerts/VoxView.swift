@@ -102,12 +102,12 @@ final public class VoxView: UIView {
             stackLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
             stackLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12),
         ])
-        
-        titleLabel.setLineSpacing(lineSpacing: 0, lineHeightMultiple: 1.25)
-        titleLabel.lineBreakMode = .byWordWrapping
-        
-        textLabel.setLineSpacing(lineSpacing: 0, lineHeightMultiple: 1.25)
-        textLabel.lineBreakMode = .byWordWrapping
+//        
+//        titleLabel.setLineSpacing(lineSpacing: 0, lineHeightMultiple: 1.25)
+//        titleLabel.lineBreakMode = .byWordWrapping
+//        
+//        textLabel.setLineSpacing(lineSpacing: 0, lineHeightMultiple: 1.25)
+//        textLabel.lineBreakMode = .byWordWrapping
 
     }
 }
