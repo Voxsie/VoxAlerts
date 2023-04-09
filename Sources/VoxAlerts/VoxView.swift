@@ -77,108 +77,32 @@ final class VoxView: UIView {
     private func setupView() {
         self.layer.cornerRadius = 10
         
-        let widthConstraint = NSLayoutConstraint(item: self,
-                                                  attribute: .width,
-                                                  relatedBy: .equal,
-                                                  toItem: nil,
-                                                  attribute: .notAnAttribute,
-                                                  multiplier: 1,
-                                                  constant: UIScreen.main.bounds.width - 32)
-
-        let heightConstraint = NSLayoutConstraint(item: self,
-                                                   attribute: .height,
-                                                   relatedBy: .greaterThanOrEqual,
-                                                   toItem: nil,
-                                                   attribute: .notAnAttribute,
-                                                   multiplier: 1,
-                                                   constant: 48)
+        NSLayoutConstraint.activate([
+            self.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - 32),
+            self.heightAnchor.constraint(greaterThanOrEqualToConstant: 48)
+        ])
         
-        self.addConstraints([widthConstraint, heightConstraint])
+        addSubview(logoImageView)
+        NSLayoutConstraint.activate([
+            logoImageView.heightAnchor.constraint(equalToConstant: 24),
+            logoImageView.widthAnchor.constraint(equalToConstant: 24),
+            logoImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
+            logoImageView.topAnchor.constraint(equalTo: topAnchor, constant: 12)
+        ])
         
-        let heightImageConstraint = NSLayoutConstraint(item: logoImageView,
-                                                   attribute: .height,
-                                                   relatedBy: .equal,
-                                                   toItem: nil,
-                                                   attribute: .notAnAttribute,
-                                                   multiplier: 1,
-                                                   constant: 24)
-
-        let widthImageConstraint = NSLayoutConstraint(item: logoImageView,
-                                                  attribute: .width,
-                                                  relatedBy: .equal,
-                                                  toItem: nil,
-                                                  attribute: .notAnAttribute,
-                                                  multiplier: 1,
-                                                  constant: 24)
-
-        // Создаем констрейнт для левого края
-        let leadingConstraint = NSLayoutConstraint(item: logoImageView,
-                                                     attribute: .leading,
-                                                     relatedBy: .equal,
-                                                     toItem: self,
-                                                     attribute: .leading,
-                                                     multiplier: 1,
-                                                     constant: 12)
-
-        // Создаем констрейнт для верхнего края
-        let topConstraint = NSLayoutConstraint(item: logoImageView,
-                                                 attribute: .top,
-                                                 relatedBy: .equal,
-                                                 toItem: self,
-                                                 attribute: .top,
-                                                 multiplier: 1,
-                                                 constant: 12)
-
-        self.addConstraints([heightImageConstraint, widthImageConstraint,
-                            leadingConstraint, topConstraint])
+        addSubview(stackLabel)
+        NSLayoutConstraint.activate([
+            stackLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+            stackLabel.leadingAnchor.constraint(equalTo: logoImageView.trailingAnchor, constant: 8),
+            stackLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
+            stackLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12),
+        ])
         
-        // Добавляем констрейнты к view
-        self.addSubview(logoImageView)
-
         titleLabel.setLineSpacing(lineSpacing: 0, lineHeightMultiple: 1.25)
         titleLabel.lineBreakMode = .byWordWrapping
         
         textLabel.setLineSpacing(lineSpacing: 0, lineHeightMultiple: 1.25)
         textLabel.lineBreakMode = .byWordWrapping
-        
-        addSubview(stackLabel)
-        let topStackConstraint = NSLayoutConstraint(item: stackLabel,
-                                                 attribute: .top,
-                                                 relatedBy: .equal,
-                                                 toItem: self,
-                                                 attribute: .top,
-                                                 multiplier: 1,
-                                                 constant: 8)
 
-        let leadingStackConstraint = NSLayoutConstraint(item: stackLabel,
-                                                     attribute: .leading,
-                                                     relatedBy: .equal,
-                                                     toItem: logoImageView,
-                                                     attribute: .trailing,
-                                                     multiplier: 1,
-                                                     constant: 8)
-
-        let trailingStackConstraint = NSLayoutConstraint(item: stackLabel,
-                                                      attribute: .trailing,
-                                                      relatedBy: .equal,
-                                                      toItem: self,
-                                                      attribute: .trailing,
-                                                      multiplier: 1,
-                                                      constant: -12)
-
-        // Создаем констрейнт для нижнего края
-        let bottomStackConstraint = NSLayoutConstraint(item: stackLabel,
-                                                    attribute: .bottom,
-                                                    relatedBy: .equal,
-                                                    toItem: self,
-                                                    attribute: .bottom,
-                                                    multiplier: 1,
-                                                    constant: -12)
-
-        self.addSubview(stackLabel)
-        self.addConstraints([topStackConstraint, leadingStackConstraint,
-                             trailingStackConstraint, bottomStackConstraint])
-
-        NSLayoutConstraint.activate(constraints)
     }
 }
