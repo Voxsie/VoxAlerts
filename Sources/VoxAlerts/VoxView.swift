@@ -23,6 +23,7 @@ final class VoxView: UIView {
         label.textAlignment = .left
         label.numberOfLines = 0
         label.text = ""
+        label.setContentHuggingPriority(.required, for: .vertical)
         return label
     }()
     
@@ -34,6 +35,7 @@ final class VoxView: UIView {
         label.textAlignment = .left
         label.numberOfLines = 0
         label.text = ""
+        label.setContentHuggingPriority(.required, for: .vertical)
         return label
     }()
     
