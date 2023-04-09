@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "alertSystemLight.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

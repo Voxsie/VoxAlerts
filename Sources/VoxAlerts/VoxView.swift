@@ -60,9 +60,12 @@ final public class VoxView: UIView {
             textLabel.text = text
         case .system:
             backgroundColor = .systemBackground
+            logoImageView.image = UIImage(named: "alertSystem")
             textLabel.text = text
-            textLabel.textColor = .label
         }
+        
+        textLabel.textColor = .label
+        
         if title != nil {
             titleLabel.text = title
             stackLabel.addArrangedSubview(titleLabel)
