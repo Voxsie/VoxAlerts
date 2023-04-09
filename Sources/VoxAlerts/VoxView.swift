@@ -46,7 +46,7 @@ final class VoxView: UIView {
         return stack
     }()
     
-    init(alertType: VoxOptions.AlertType, title: String? = nil, text: String) {
+    public init(alertType: VoxOptions.AlertType, title: String? = nil, text: String) {
         super.init(frame: UIScreen.main.bounds)
         
         switch(alertType) {
