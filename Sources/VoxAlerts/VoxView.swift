@@ -81,7 +81,7 @@ final class VoxView: UIView {
         
         NSLayoutConstraint.activate([
             self.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - 32),
-            self.heightAnchor.constraint(greaterThanOrEqualToConstant: 48)
+            self.heightAnchor.constraint(equalToConstant: 48)
         ])
         
         addSubview(logoImageView)
