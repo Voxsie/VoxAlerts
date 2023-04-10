@@ -78,12 +78,7 @@ final class VoxView: UIView {
     
     private func setupView() {
         self.layer.cornerRadius = 10
-        
-        NSLayoutConstraint.activate([
-            self.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - 32),
-            self.heightAnchor.constraint(equalToConstant: 48)
-        ])
-        
+ 
         addSubview(logoImageView)
         NSLayoutConstraint.activate([
             logoImageView.heightAnchor.constraint(equalToConstant: 24),
@@ -98,6 +93,11 @@ final class VoxView: UIView {
             stackLabel.leadingAnchor.constraint(equalTo: logoImageView.trailingAnchor, constant: 8),
             stackLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
             stackLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12),
+        ])
+        
+        NSLayoutConstraint.activate([
+            self.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - 32),
+            self.heightAnchor.constraint(equalToConstant: 48)
         ])
 //        
 //        titleLabel.setLineSpacing(lineSpacing: 0, lineHeightMultiple: 1.25)
