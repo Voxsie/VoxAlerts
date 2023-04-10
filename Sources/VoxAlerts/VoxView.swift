@@ -76,6 +76,8 @@ final class VoxView: UIView {
     
     private func setupView() {
         self.layer.cornerRadius = 10
+        
+        translatesAutoresizingMaskIntoConstraints = false
  
         addSubview(logoImageView)
         NSLayoutConstraint.activate([
