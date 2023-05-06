@@ -11,7 +11,7 @@ public struct VoxOptions {
     
     public var type: VoxOptions.AlertType? = .success
     
-    public var hapticFeedbak: VoxOptions.FeedbackType = .success
+    public var hapticFeedback: VoxOptions.FeedbackType = .success
     
     public var position: VoxOptions.AlertPosition = .top
 }

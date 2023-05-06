@@ -46,7 +46,7 @@ final public class VoxView: UIView {
         return stack
     }()
     
-    public init(alertType: VoxOptions.AlertType, title: String? = nil, text: String) {
+    public init(alertType: VoxOptions.AlertType = .system, title: String? = nil, text: String) {
         super.init(frame: UIScreen.main.bounds)
         
         switch(alertType) {
@@ -62,10 +62,8 @@ final public class VoxView: UIView {
             backgroundColor = .systemBackground
             logoImageView.image = UIImage(named: "alertSystem")
             textLabel.text = text
+            textLabel.textColor = .label
         }
-        
-        textLabel.textColor = .label
-        
         if title != nil {
             titleLabel.text = title
             stackLabel.addArrangedSubview(titleLabel)
