@@ -28,7 +28,7 @@ public struct VoxAlert {
             NSLayoutConstraint.activate([
                 alertView.leadingAnchor.constraint(equalTo: viewController.view.leadingAnchor),
                 alertView.trailingAnchor.constraint(equalTo: viewController.view.trailingAnchor),
-                alertView.bottomAnchor.constraint(equalTo: viewController.view.bottomAnchor)
+                alertView.bottomAnchor.constraint(equalTo: viewController.view.bottomAnchor, constant: -(viewController.view.safeAreaInsets.bottom))
             ])
         }
     }

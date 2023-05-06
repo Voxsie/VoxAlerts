@@ -98,14 +98,14 @@ final public class VoxView: UIView {
         
         NSLayoutConstraint.activate([
             self.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - 32),
-            self.heightAnchor.constraint(equalToConstant: 48)
+            self.heightAnchor.constraint(greaterThanOrEqualToConstant: 48)
         ])
-//        
-//        titleLabel.setLineSpacing(lineSpacing: 0, lineHeightMultiple: 1.25)
-//        titleLabel.lineBreakMode = .byWordWrapping
-//        
-//        textLabel.setLineSpacing(lineSpacing: 0, lineHeightMultiple: 1.25)
-//        textLabel.lineBreakMode = .byWordWrapping
+        
+        titleLabel.setLineSpacing(lineSpacing: 0, lineHeightMultiple: 1.25)
+        titleLabel.lineBreakMode = .byWordWrapping
+        
+        textLabel.setLineSpacing(lineSpacing: 0, lineHeightMultiple: 1.25)
+        textLabel.lineBreakMode = .byWordWrapping
 
     }
 }

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 public struct VoxOptions {
     
@@ -14,6 +15,12 @@ public struct VoxOptions {
     public var hapticFeedback: VoxOptions.FeedbackType = .success
     
     public var position: VoxOptions.AlertPosition = .top
+    
+    public var backgroundColor: UIColor = .clear
+    
+    public var duration: VoxOptions.AlertDuration = .time(3)
+    
+    public var textColro: UIColor = .label
 }
 
 
