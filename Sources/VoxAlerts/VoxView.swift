@@ -12,6 +12,7 @@ final public class VoxView: UIView {
     fileprivate lazy var logoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.image = UIImage(named: "alertSystem")
         return imageView
     }()
     
@@ -52,15 +53,15 @@ final public class VoxView: UIView {
         switch(alertType) {
         case .success:
             backgroundColor = .specialSuccess
-            logoImageView.image = UIImage(named: "alertSuccess")
+            logoImageView.image = Assets.getImage(named: "alertSuccess")
             textLabel.text = text
         case .error:
             backgroundColor = .specialNegative
-            logoImageView.image = UIImage(named: "alertError")
+            logoImageView.image = Assets.getImage(named: "alertError")
             textLabel.text = text
         case .system:
             backgroundColor = .systemBackground
-            logoImageView.image = UIImage(named: "alertSystem")
+            logoImageView.image = Assets.getImage(named: "alertSystem")
             textLabel.text = text
             textLabel.textColor = .label
         }
