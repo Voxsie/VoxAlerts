@@ -14,16 +14,29 @@ public struct VoxAlert {
     }
     
     public static func show() {
-        if let window = UIApplication.shared.windows.first {
+        if let vc = shared.getPresentingViewController() {
             let alertView = VoxView(alertType: shared.options.type ?? .success, title: "2323", text: "23233")
-            window.addSubview(alertView)
+            vc.view.addSubview(alertView)
             alertView.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.activate([
-                alertView.topAnchor.constraint(equalTo: window.topAnchor),
-                alertView.leadingAnchor.constraint(equalTo: window.leadingAnchor),
-                alertView.trailingAnchor.constraint(equalTo: window.trailingAnchor),
-                alertView.bottomAnchor.constraint(equalTo: window.bottomAnchor)
+                alertView.topAnchor.constraint(equalTo: vc.view.topAnchor),
+                alertView.leadingAnchor.constraint(equalTo: vc.view.leadingAnchor),
+                alertView.trailingAnchor.constraint(equalTo: vc.view.trailingAnchor),
+                alertView.bottomAnchor.constraint(equalTo: vc.view.bottomAnchor)
             ])
         }
+    }
+    
+    func getPresentingViewController() -> UIViewController? {
+        guard let mainWindow = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) else {
+            return nil
+        }
+
+        var presentingViewController = mainWindow.rootViewController
+        while let nextPresentingViewController = presentingViewController?.presentedViewController {
+            presentingViewController = nextPresentingViewController
+        }
+
+        return presentingViewController
     }
 }
