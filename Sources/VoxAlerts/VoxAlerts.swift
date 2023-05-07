@@ -26,7 +26,7 @@ public struct VoxAlert {
 
             shared.alertView = VoxView(alertType: shared.options.type ?? .system, title: "2323", text: "23233")
                        
-            shared.helper.setupPosition(for: shared.alertView, with: .bottom, on: viewController)
+            shared.helper.setupPosition(for: shared.alertView, with: shared.options.position, on: viewController)
         }
     }
     
