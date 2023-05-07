@@ -46,7 +46,11 @@ final public class VoxView: UIView {
         return stack
     }()
     
+<<<<<<< Updated upstream
     init(alertType: VoxOptions.AlertType, title: String? = nil, text: String) {
+=======
+    public init(alertType: VoxOptions.AlertType = .system, title: String? = nil, text: String = "") {
+>>>>>>> Stashed changes
         super.init(frame: UIScreen.main.bounds)
         
         switch(alertType) {
