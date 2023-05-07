@@ -4,6 +4,8 @@ public struct VoxAlert {
     
     static var shared = VoxAlert()
     
+    lazy var alertView: VoxView = VoxView()
+    
     weak var viewController: UIViewController? = nil
     
     var helper = AlertHelper()
@@ -21,15 +23,10 @@ public struct VoxAlert {
         if let viewController = shared.getPresentingViewController() {
             
             shared.helper.makeFeedback(shared.options.hapticFeedback)
-            
-            let alertView = VoxView(alertType: shared.options.type ?? .system, title: "2323", text: "23233")
-            viewController.view.addSubview(alertView)
-            alertView.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint.activate([
-                alertView.leadingAnchor.constraint(equalTo: viewController.view.leadingAnchor),
-                alertView.trailingAnchor.constraint(equalTo: viewController.view.trailingAnchor),
-                alertView.bottomAnchor.constraint(equalTo: viewController.view.bottomAnchor, constant: -(viewController.view.safeAreaInsets.bottom))
-            ])
+
+            shared.alertView = VoxView(alertType: shared.options.type ?? .system, title: "2323", text: "23233")
+                       
+            shared.helper.setupPosition(for: shared.alertView, with: .bottom, on: viewController)
         }
     }
     
