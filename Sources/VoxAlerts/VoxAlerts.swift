@@ -10,7 +10,7 @@ public struct VoxAlert {
     
     var helper = AlertHelper()
     
-    public private(set) var options: VoxOptions = VoxOptions(type: .success, hapticFeedback: .success, position: .bottom)
+    public private(set) var options: VoxOptions = VoxOptions(type: .success, hapticFeedback: .success, position: .top)
     
     public init(options: VoxOptions) {
         self.options = options
