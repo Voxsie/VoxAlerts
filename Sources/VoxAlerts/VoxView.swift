@@ -47,21 +47,21 @@ final public class VoxView: UIView {
         return stack
     }()
     
-    public init(alertType: VoxOptions.AlertType = .system, title: String? = nil, text: String = "") {
+    public init(alertType: VoxOptions.AlertType = .system, title: String? = nil, text: String = "", customImage: UIImage? = nil) {
         super.init(frame: UIScreen.main.bounds)
         
         switch(alertType) {
         case .success:
             backgroundColor = .specialSuccess
-            logoImageView.image = Assets.getImage(named: "alertSuccess")
+            logoImageView.image = customImage != nil ? customImage : Assets.getImage(named: "alertSuccess")
             textLabel.text = text
         case .error:
             backgroundColor = .specialNegative
-            logoImageView.image = Assets.getImage(named: "alertError")
+            logoImageView.image = customImage != nil ? customImage : Assets.getImage(named: "alertError")
             textLabel.text = text
         case .system:
             backgroundColor = .systemBackground
-            logoImageView.image = Assets.getImage(named: "alertSystem")
+            logoImageView.image = customImage != nil ? customImage : Assets.getImage(named: "alertSystem")
             textLabel.text = text
             textLabel.textColor = .label
         }

@@ -28,9 +28,32 @@ final class AlertHelper {
         
         switch(position) {
         case .top:
-            alertView.frame.origin.y = UIScreen.main.bounds.minY - alertView.frame.size.height
+            if let top = viewController.view?.topAnchor {
+                alertView.bottomAnchor.constraint(equalTo: top, constant: 0).isActive = true
+            }
         case .bottom:
-            alertView.frame.origin.y = UIScreen.main.bounds.height
+            if let bottom = viewController.view?.bottomAnchor {
+                alertView.topAnchor.constraint(equalTo: bottom, constant: 0).isActive = true
+            }
+        }
+    }
+    
+    public func makeAnimation(for alertView: VoxView, with position: VoxOptions.AlertPosition, on viewController: UIViewController) {
+        switch(position) {
+        case .top:
+            if let top = viewController.view?.safeAreaLayoutGuide.topAnchor {
+                UIView.animate(withDuration: 0.5, animations: {
+                    alertView.bottomAnchor.constraint(equalTo: top, constant: alertView.frame.height).isActive = true
+                    viewController.view.layoutIfNeeded()
+                })
+            }
+        case .bottom:
+            if let bottom = viewController.view?.safeAreaLayoutGuide.bottomAnchor {
+                UIView.animate(withDuration: 0.5, animations: {
+                    alertView.bottomAnchor.constraint(equalTo: bottom, constant: 0).isActive = true
+                    viewController.view.layoutIfNeeded()
+                })
+            }
         }
     }
 }

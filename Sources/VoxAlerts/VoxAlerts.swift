@@ -4,13 +4,19 @@ public struct VoxAlert {
     
     static var shared = VoxAlert()
     
+    var title: String? = "Alert title"
+    
+    var text: String = "Alert text"
+    
+    var image: UIImage? = nil
+    
     lazy var alertView: VoxView = VoxView()
     
     weak var viewController: UIViewController? = nil
     
     var helper = AlertHelper()
     
-    public private(set) var options: VoxOptions = VoxOptions(type: .success, hapticFeedback: .success, position: .top)
+    public private(set) var options: VoxOptions = VoxOptions()
     
     public init(options: VoxOptions) {
         self.options = options
@@ -24,7 +30,10 @@ public struct VoxAlert {
             
             shared.helper.makeFeedback(shared.options.hapticFeedback)
 
-            shared.alertView = VoxView(alertType: shared.options.type ?? .system, title: "2323", text: "23233")
+            shared.alertView = VoxView(alertType: shared.options.type ?? .system,
+                                       title: shared.title,
+                                       text: shared.text,
+                                       customImage: shared.image)
                        
             shared.helper.setupPosition(for: shared.alertView, with: shared.options.position, on: viewController)
         }
