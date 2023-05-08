@@ -67,23 +67,23 @@ final class AlertHelper {
         ])
         
         if let bottom = viewController.view?.bottomAnchor {
-            alertView.bottomAnchor.constraint(equalTo: bottom, constant: 69 - 30).isActive = true
+            alertView.bottomAnchor.constraint(equalTo: bottom, constant: 69).isActive = true
         }
         
-//        if let bottom = viewController.view?.bottomAnchor {
-//            UIView.animate(withDuration: 0.5, animations: {
-//                alertView.bottomAnchor.constraint(equalTo: bottom, constant: 0).isActive = true
-//                viewController.view.layoutIfNeeded()
-//            })
-//        }
-//
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-//            if let bottom = viewController.view?.bottomAnchor {
-//                UIView.animate(withDuration: 0.5, animations: {
-//                    alertView.bottomAnchor.constraint(equalTo: bottom, constant: alertView.frame.height).isActive = true
-//                    viewController.view.layoutIfNeeded()
-//                })
-//            }
-//        }
+        if let bottom = viewController.view?.bottomAnchor {
+            UIView.animate(withDuration: 0.5, animations: {
+                alertView.bottomAnchor.constraint(equalTo: bottom, constant: 0).isActive = true
+                viewController.view.layoutIfNeeded()
+            })
+        }
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            if let bottom = viewController.view?.bottomAnchor {
+                UIView.animate(withDuration: 0.5, animations: {
+                    alertView.bottomAnchor.constraint(equalTo: bottom, constant: alertView.frame.height).isActive = true
+                    viewController.view.layoutIfNeeded()
+                })
+            }
+        }
     }
 }
