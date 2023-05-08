@@ -17,7 +17,7 @@ public struct VoxAlert {
     public init() {
     }
     
-    public static func show(title: String? = "Alert title", text: String = "Alert text", image: UIImage, with options: VoxOptions = VoxOptions()) {
+    public static func show(title: String? = "Alert title", text: String = "Alert text", image: UIImage? = nil, with options: VoxOptions = VoxOptions()) {
         if let viewController = shared.getPresentingViewController() {
 
             let alertView = VoxView(alertType: options.type ?? .system,
