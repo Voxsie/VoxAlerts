@@ -25,11 +25,12 @@ public struct VoxAlert {
                                        text: text,
                                        customImage: image)
                        
-            shared.helper.setupPosition(for: alertView, with: options.position, on: viewController)
-            
-            shared.helper.makeFeedback(options.hapticFeedback)
-            
-            shared.helper.makeAnimation(for: alertView, with: options.position, on: viewController)
+            shared.helper.makeAnimationFromBottom(for: alertView, with: options.position, on: viewController)
+//            shared.helper.setupPosition(for: alertView, with: options.position, on: viewController)
+//            
+//            shared.helper.makeFeedback(options.hapticFeedback)
+//            
+//            shared.helper.makeAnimation(for: alertView, with: options.position, on: viewController)
         }
     }
     

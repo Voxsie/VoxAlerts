@@ -56,4 +56,27 @@ final class AlertHelper {
             }
         }
     }
+    
+    public func makeAnimationFromBottom(for alertView: VoxView, with position: VoxOptions.AlertPosition, on viewController: UIViewController) {
+        viewController.view.addSubview(alertView)
+        alertView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            alertView.leadingAnchor.constraint(equalTo: viewController.view.leadingAnchor, constant: 16),
+            alertView.trailingAnchor.constraint(equalTo: viewController.view.trailingAnchor, constant: -16),
+            alertView.heightAnchor.constraint(greaterThanOrEqualToConstant: 50)
+        ])
+        
+        if let bottom = viewController.view?.bottomAnchor {
+            alertView.bottomAnchor.constraint(equalTo: bottom, constant: alertView.frame.height).isActive = true
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            if let bottom = viewController.view?.bottomAnchor {
+                UIView.animate(withDuration: 0.5, animations: {
+                    alertView.bottomAnchor.constraint(equalTo: bottom, constant: 0).isActive = true
+                    viewController.view.layoutIfNeeded()
+                })
+            }
+        }
+    }
 }
