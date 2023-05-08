@@ -16,13 +16,19 @@ public struct VoxOptions {
     
     public var position: VoxOptions.AlertPosition = .top
     
-    public var backgroundColor: UIColor = .clear
+    public var backgroundColor: UIColor? = nil
     
     public var duration: VoxOptions.AlertDuration = .time(3)
     
-    public var textColor: UIColor = .label
+    public var textColor: UIColor? = .label
     
-    public init(type: VoxOptions.AlertType? = nil, hapticFeedback: VoxOptions.FeedbackType, position: VoxOptions.AlertPosition, backgroundColor: UIColor, duration: VoxOptions.AlertDuration, textColor: UIColor) {
+    public init(type: VoxOptions.AlertType? = nil,
+                hapticFeedback: VoxOptions.FeedbackType = VoxOptions.FeedbackType.none,
+                position: VoxOptions.AlertPosition,
+                backgroundColor: UIColor? = nil,
+                duration: VoxOptions.AlertDuration = VoxOptions.AlertDuration.time(3),
+                textColor: UIColor? = nil)
+    {
         self.type = type
         self.hapticFeedback = hapticFeedback
         self.position = position
