@@ -23,7 +23,7 @@ final class AlertHelper {
         NSLayoutConstraint.activate([
             alertView.leadingAnchor.constraint(equalTo: viewController.view.leadingAnchor, constant: 16),
             alertView.trailingAnchor.constraint(equalTo: viewController.view.trailingAnchor, constant: -16),
-            alertView.heightAnchor.constraint(greaterThanOrEqualToConstant: 50)
+            alertView.heightAnchor.constraint(equalToConstant: 69)
         ])
         
         switch(position) {
@@ -43,7 +43,7 @@ final class AlertHelper {
         case .top:
             if let top = viewController.view?.safeAreaLayoutGuide.topAnchor {
                 UIView.animate(withDuration: 0.5, animations: {
-                    alertView.bottomAnchor.constraint(equalTo: top, constant: -alertView.frame.height).isActive = true
+                    alertView.bottomAnchor.constraint(equalTo: top, constant: -69).isActive = true
                     viewController.view.layoutIfNeeded()
                 })
             }
@@ -63,11 +63,11 @@ final class AlertHelper {
         NSLayoutConstraint.activate([
             alertView.leadingAnchor.constraint(equalTo: viewController.view.leadingAnchor, constant: 16),
             alertView.trailingAnchor.constraint(equalTo: viewController.view.trailingAnchor, constant: -16),
-            alertView.heightAnchor.constraint(greaterThanOrEqualToConstant: 50)
+            alertView.heightAnchor.constraint(greaterThanOrEqualToConstant: 69)
         ])
         
         if let bottom = viewController.view?.bottomAnchor {
-            alertView.bottomAnchor.constraint(equalTo: bottom, constant: alertView.frame.height - 30).isActive = true
+            alertView.bottomAnchor.constraint(equalTo: bottom, constant: 69 - 30).isActive = true
         }
         
 //        if let bottom = viewController.view?.bottomAnchor {
