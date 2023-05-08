@@ -24,7 +24,7 @@ public struct VoxOptions {
     
     public init(type: VoxOptions.AlertType? = nil,
                 hapticFeedback: VoxOptions.FeedbackType = VoxOptions.FeedbackType.none,
-                position: VoxOptions.AlertPosition,
+                position: VoxOptions.AlertPosition = VoxOptions.AlertPosition.bottom,
                 backgroundColor: UIColor? = nil,
                 duration: VoxOptions.AlertDuration = VoxOptions.AlertDuration.time(3),
                 textColor: UIColor? = nil)
