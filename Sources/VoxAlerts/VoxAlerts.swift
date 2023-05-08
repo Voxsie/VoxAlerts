@@ -10,34 +10,26 @@ public struct VoxAlert {
     
     var image: UIImage? = nil
     
-    lazy var alertView: VoxView = VoxView()
-    
     weak var viewController: UIViewController? = nil
     
     var helper = AlertHelper()
     
-    public private(set) var options: VoxOptions = VoxOptions()
-    
-    public init(options: VoxOptions) {
-        self.options = options
-    }
-    
     public init() {
     }
     
-    public static func show() {
+    public static func show(title: String? = "Alert title", text: String = "Alert text", image: UIImage, with options: VoxOptions = VoxOptions()) {
         if let viewController = shared.getPresentingViewController() {
-            
-            shared.helper.makeFeedback(shared.options.hapticFeedback)
 
-            shared.alertView = VoxView(alertType: shared.options.type ?? .system,
-                                       title: shared.title,
-                                       text: shared.text,
-                                       customImage: shared.image)
+            let alertView = VoxView(alertType: options.type ?? .system,
+                                       title: title,
+                                       text: text,
+                                       customImage: image)
                        
-            shared.helper.setupPosition(for: shared.alertView, with: shared.options.position, on: viewController)
+            shared.helper.setupPosition(for: alertView, with: options.position, on: viewController)
             
-            shared.helper.makeAnimation(for: shared.alertView, with: shared.options.position, on: viewController)
+            shared.helper.makeFeedback(options.hapticFeedback)
+            
+            shared.helper.makeAnimation(for: alertView, with: options.position, on: viewController)
         }
     }
     

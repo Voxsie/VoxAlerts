@@ -10,8 +10,8 @@ import UIKit
 
 final class AlertHelper {
     
-    public func makeFeedback(_ option: VoxOptions.FeedbackType) {
-        if let feedbackType = option.value {
+    public func makeFeedback(_ option: VoxOptions.FeedbackType? = VoxOptions.FeedbackType.none) {
+        if let feedbackType = option?.value {
             let generator = UINotificationFeedbackGenerator()
             generator.notificationOccurred(feedbackType)
         }

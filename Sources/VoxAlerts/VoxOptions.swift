@@ -21,6 +21,10 @@ public struct VoxOptions {
     public var duration: VoxOptions.AlertDuration = .time(3)
     
     public var textColro: UIColor = .label
+    
+    public init() {
+        
+    }
 }
 
 
