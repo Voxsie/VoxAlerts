@@ -36,6 +36,8 @@ public struct VoxAlert {
                                        customImage: shared.image)
                        
             shared.helper.setupPosition(for: shared.alertView, with: shared.options.position, on: viewController)
+            
+            shared.helper.makeAnimation(for: shared.alertView, with: shared.options.position, on: viewController)
         }
     }
     
