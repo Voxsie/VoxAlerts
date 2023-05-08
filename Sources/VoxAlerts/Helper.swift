@@ -21,8 +21,8 @@ final class AlertHelper {
         viewController.view.addSubview(alertView)
         alertView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            alertView.leadingAnchor.constraint(equalTo: viewController.view.leadingAnchor),
-            alertView.trailingAnchor.constraint(equalTo: viewController.view.trailingAnchor),
+            alertView.leadingAnchor.constraint(equalTo: viewController.view.leadingAnchor, constant: 16),
+            alertView.trailingAnchor.constraint(equalTo: viewController.view.trailingAnchor, constant: -16),
             
         ])
         
@@ -48,7 +48,7 @@ final class AlertHelper {
                 })
             }
         case .bottom:
-            if let bottom = viewController.view?.safeAreaLayoutGuide.bottomAnchor {
+            if let bottom = viewController.view?.bottomAnchor {
                 UIView.animate(withDuration: 0.5, animations: {
                     alertView.bottomAnchor.constraint(equalTo: bottom, constant: 0).isActive = true
                     viewController.view.layoutIfNeeded()
