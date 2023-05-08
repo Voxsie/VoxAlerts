@@ -33,7 +33,7 @@ final class AlertHelper {
             }
         case .bottom:
             if let bottom = viewController.view?.bottomAnchor {
-                alertView.topAnchor.constraint(equalTo: bottom, constant: 200).isActive = true
+                alertView.bottomAnchor.constraint(equalTo: bottom, constant: alertView.frame.height).isActive = true
             }
         }
     }
