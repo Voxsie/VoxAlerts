@@ -1,6 +1,6 @@
 //
 //  VoxOptions.swift
-//  
+//
 //
 //  Created by Илья Желтиков on 08.04.2023.
 //
@@ -20,7 +20,16 @@ public struct VoxOptions {
     
     public var duration: VoxOptions.AlertDuration = .time(3)
     
-    public var textColro: UIColor = .label
+    public var textColor: UIColor = .label
+    
+    public init(type: VoxOptions.AlertType? = nil, hapticFeedback: VoxOptions.FeedbackType, position: VoxOptions.AlertPosition, backgroundColor: UIColor, duration: VoxOptions.AlertDuration, textColor: UIColor) {
+        self.type = type
+        self.hapticFeedback = hapticFeedback
+        self.position = position
+        self.backgroundColor = backgroundColor
+        self.duration = duration
+        self.textColor = textColor
+    }
     
     public init() {
         
