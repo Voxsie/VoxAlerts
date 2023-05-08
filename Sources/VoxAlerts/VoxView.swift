@@ -47,10 +47,10 @@ final public class VoxView: UIView {
         return stack
     }()
     
-    public init(alertType: VoxOptions.AlertType = .system, title: String? = nil, text: String = "", customImage: UIImage? = nil) {
+    public init(options: VoxOptions, title: String? = nil, text: String = "", customImage: UIImage? = nil) {
         super.init(frame: UIScreen.main.bounds)
         
-        switch(alertType) {
+        switch(options.type) {
         case .success:
             backgroundColor = .specialSuccess
             logoImageView.image = customImage != nil ? customImage : Assets.getImage(named: "alertSuccess")
@@ -59,7 +59,7 @@ final public class VoxView: UIView {
             backgroundColor = .specialNegative
             logoImageView.image = customImage != nil ? customImage : Assets.getImage(named: "alertError")
             textLabel.text = text
-        case .system:
+        case .system, .none:
             backgroundColor = .systemBackground
             logoImageView.image = customImage != nil ? customImage : Assets.getImage(named: "alertSystem")
             textLabel.text = text
@@ -68,7 +68,16 @@ final public class VoxView: UIView {
         if title != nil {
             titleLabel.text = title
             stackLabel.addArrangedSubview(titleLabel)
+            
+            if options.textFont?.titleFont != nil {
+                titleLabel.font = options.textFont?.titleFont
+            }
         }
+        
+        if options.textFont?.subtitleFont != nil {
+            textLabel.font = options.textFont?.subtitleFont
+        }
+        
         stackLabel.addArrangedSubview(textLabel)
         setupView()
     }

@@ -20,14 +20,17 @@ public struct VoxOptions {
     
     public var duration: VoxOptions.AlertDuration = .time(3)
     
-    public var textColor: UIColor? = .label
+    public var textColor: UIColor? = nil
+    
+    public var textFont: VoxOptions.AlertFont? = nil
     
     public init(type: VoxOptions.AlertType? = nil,
                 hapticFeedback: VoxOptions.FeedbackType = VoxOptions.FeedbackType.none,
                 position: VoxOptions.AlertPosition = VoxOptions.AlertPosition.bottom,
                 backgroundColor: UIColor? = nil,
                 duration: VoxOptions.AlertDuration = VoxOptions.AlertDuration.time(3),
-                textColor: UIColor? = nil)
+                textColor: UIColor? = nil,
+                textFont: VoxOptions.AlertFont? = nil)
     {
         self.type = type
         self.hapticFeedback = hapticFeedback
@@ -35,6 +38,7 @@ public struct VoxOptions {
         self.backgroundColor = backgroundColor
         self.duration = duration
         self.textColor = textColor
+        self.textFont = textFont
     }
     
     public init() {
