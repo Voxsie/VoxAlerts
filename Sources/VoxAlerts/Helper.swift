@@ -63,7 +63,7 @@ final class AlertHelper {
         NSLayoutConstraint.activate([
             alertView.leadingAnchor.constraint(equalTo: viewController.view.leadingAnchor, constant: 16),
             alertView.trailingAnchor.constraint(equalTo: viewController.view.trailingAnchor, constant: -16),
-            alertView.heightAnchor.constraint(greaterThanOrEqualToConstant: 50)
+            alertView.heightAnchor.constraint(equalToConstant: 69)
         ])
         
         if let bottom = viewController.view?.bottomAnchor {
