@@ -1,6 +1,6 @@
 //
 //  File.swift
-//  
+//
 //
 //  Created by Илья Желтиков on 06.05.2023.
 //
@@ -70,10 +70,17 @@ final class AlertHelper {
             alertView.bottomAnchor.constraint(equalTo: bottom, constant: alertView.frame.height).isActive = true
         }
         
+        if let bottom = viewController.view?.bottomAnchor {
+            UIView.animate(withDuration: 0.5, animations: {
+                alertView.bottomAnchor.constraint(equalTo: bottom, constant: 0).isActive = true
+                viewController.view.layoutIfNeeded()
+            })
+        }
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             if let bottom = viewController.view?.bottomAnchor {
                 UIView.animate(withDuration: 0.5, animations: {
-                    alertView.bottomAnchor.constraint(equalTo: bottom, constant: 0).isActive = true
+                    alertView.bottomAnchor.constraint(equalTo: bottom, constant: alertView.frame.height).isActive = true
                     viewController.view.layoutIfNeeded()
                 })
             }
