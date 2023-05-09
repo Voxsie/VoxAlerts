@@ -100,32 +100,34 @@ final class AlertHelper {
     
     @objc
     public func dismissAlert() {
-        switch(self.options.position) {
-        case .top:
-            if let top = viewController.view?.topAnchor {
-                UIView.animate(withDuration: 0.3, delay: 0.0, options: [.curveEaseOut], animations: { [weak self] in
-                    self?.topConstraint?.isActive = false
-                    self?.initialConstraint?.isActive = true
-                    self?.alertView.bottomAnchor.constraint(equalTo: top, constant: 0).isActive = true
-                    self?.viewController.view.layoutIfNeeded()
-                }) { [weak self] _ in
-                    if self?.isNeedToRemoveFromSuperView == true {
-                        self?.alertView.removeFromSuperview()
-                        self?.isNeedToRemoveFromSuperView = false
+        if isNeedToRemoveFromSuperView {
+            switch(self.options.position) {
+            case .top:
+                if let top = viewController.view?.topAnchor {
+                    UIView.animate(withDuration: 0.3, delay: 0.0, options: [.curveEaseOut], animations: { [weak self] in
+                        self?.topConstraint?.isActive = false
+                        self?.initialConstraint?.isActive = true
+                        self?.alertView.bottomAnchor.constraint(equalTo: top, constant: 0).isActive = true
+                        self?.viewController.view.layoutIfNeeded()
+                    }) { [weak self] _ in
+                        if self?.isNeedToRemoveFromSuperView == true {
+                            self?.alertView.removeFromSuperview()
+                            self?.isNeedToRemoveFromSuperView = false
+                        }
                     }
                 }
-            }
-        case .bottom:
-            if let bottom = viewController.view?.bottomAnchor {
-                UIView.animate(withDuration: 0.3, delay: 0.0, options: [.curveEaseOut], animations: { [weak self] in
-                    self?.bottomConstraint?.isActive = false
-                    self?.initialConstraint?.isActive = true
-                    self?.alertView.bottomAnchor.constraint(equalTo: bottom, constant: self?.alertView.frame.height ?? 0).isActive = true
-                    self?.viewController.view.layoutIfNeeded()
-                }) { [weak self] _ in
-                    if self?.isNeedToRemoveFromSuperView == true {
-                        self?.alertView.removeFromSuperview()
-                        self?.isNeedToRemoveFromSuperView = false
+            case .bottom:
+                if let bottom = viewController.view?.bottomAnchor {
+                    UIView.animate(withDuration: 0.3, delay: 0.0, options: [.curveEaseOut], animations: { [weak self] in
+                        self?.bottomConstraint?.isActive = false
+                        self?.initialConstraint?.isActive = true
+                        self?.alertView.bottomAnchor.constraint(equalTo: bottom, constant: self?.alertView.frame.height ?? 0).isActive = true
+                        self?.viewController.view.layoutIfNeeded()
+                    }) { [weak self] _ in
+                        if self?.isNeedToRemoveFromSuperView == true {
+                            self?.alertView.removeFromSuperview()
+                            self?.isNeedToRemoveFromSuperView = false
+                        }
                     }
                 }
             }
