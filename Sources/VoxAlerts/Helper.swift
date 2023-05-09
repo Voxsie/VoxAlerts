@@ -48,7 +48,7 @@ final class AlertHelper {
         case .top:
             if let topSafeArea = viewController.view?.safeAreaLayoutGuide.topAnchor {
                 UIView.animate(withDuration: 0.3, delay: 0.0, options: [.curveEaseOut], animations: {
-                    self.topConstraint = alertView.bottomAnchor.constraint(equalTo: topSafeArea, constant: -alertView.frame.height)
+                    self.topConstraint = alertView.bottomAnchor.constraint(equalTo: topSafeArea, constant: alertView.frame.height)
                     self.topConstraint?.isActive = true
                     viewController.view.layoutIfNeeded()
                 })
