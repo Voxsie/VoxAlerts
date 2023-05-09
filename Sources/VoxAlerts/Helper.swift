@@ -58,6 +58,9 @@ final class AlertHelper {
     }
     
     public func makeAnimationFromBottom(for alertView: VoxView, with position: VoxOptions.AlertPosition, on viewController: UIViewController) {
+        
+        var tempConstraint: NSLayoutConstraint?
+        
         viewController.view.addSubview(alertView)
         alertView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -74,7 +77,8 @@ final class AlertHelper {
             
             if let bottomSafeArea = viewController.view?.safeAreaLayoutGuide.bottomAnchor {
                 UIView.animate(withDuration: 0.3, delay: 0.0, options: [.curveEaseOut], animations: {
-                    alertView.bottomAnchor.constraint(equalTo: bottomSafeArea, constant: 0).isActive = true
+                    tempConstraint = alertView.bottomAnchor.constraint(equalTo: bottomSafeArea, constant: 0)
+                    tempConstraint?.isActive = true
                     viewController.view.layoutIfNeeded()
                 })
             }
@@ -83,6 +87,7 @@ final class AlertHelper {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             if let bottom = viewController.view?.bottomAnchor {
                 UIView.animate(withDuration: 0.3, delay: 0.0, options: [.curveEaseOut], animations: {
+                    tempConstraint?.isActive = false
                     alertView.bottomAnchor.constraint(equalTo: bottom, constant: 69).isActive = true
                     viewController.view.layoutIfNeeded()
                 }) { _ in
