@@ -92,6 +92,7 @@ final class AlertHelper {
                 UIView.animate(withDuration: 0.3, delay: 0.0, options: [.curveEaseOut], animations: { [weak self] in
                     self?.bottomConstraint?.isActive = false
                     self?.initialConstraint?.isActive = true
+                    alertView.bottomAnchor.constraint(equalTo: bottom, constant: alertView.frame.height).isActive = true
                     viewController.view.layoutIfNeeded()
                 }) { _ in
                     alertView.removeFromSuperview()
