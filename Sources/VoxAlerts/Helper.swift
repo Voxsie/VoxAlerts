@@ -119,7 +119,9 @@ final class AlertHelper {
                     self?.alertView.bottomAnchor.constraint(equalTo: bottom, constant: self?.alertView.frame.height ?? 0).isActive = true
                     self?.viewController.view.layoutIfNeeded()
                 }) { _ in
-                    self.alertView.removeFromSuperview()
+                    if self.options.duration.getTime() < 0 {
+                        self.alertView.removeFromSuperview()
+                    }
                 }
             }
         }
