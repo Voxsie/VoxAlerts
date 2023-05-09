@@ -12,5 +12,14 @@ public extension VoxOptions {
     enum AlertDuration {
         case time(Double)
         case byDismiss
+        
+        func getTime() -> Double {
+            switch self {
+            case .time(let value):
+                return value
+            case .byDismiss:
+                return -1.0
+            }
+        }
     }
 }

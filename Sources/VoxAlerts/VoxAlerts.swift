@@ -25,12 +25,23 @@ public struct VoxAlert {
                                        text: text,
                                        customImage: image)
                        
-            shared.helper.makeAnimationFromBottom(for: alertView, with: options.position, on: viewController)
-//            shared.helper.setupPosition(for: alertView, with: options.position, on: viewController)
+//            shared.helper.makeAnimationFromBottom(for: alertView, with: options.position, on: viewController)
+            
+            shared.helper.setupPosition(for: alertView, with: options.position, on: viewController)
 //            
-//            shared.helper.makeFeedback(options.hapticFeedback)
-//            
-//            shared.helper.makeAnimation(for: alertView, with: options.position, on: viewController)
+            shared.helper.makeFeedback(options.hapticFeedback)
+//
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                shared.helper.makeAnimation(for: alertView, with: options.position, on: viewController)
+            }
+            
+            let timeForDismiss = options.duration.getTime()
+            if timeForDismiss > 0 {
+                DispatchQueue.main.asyncAfter(deadline: .now() + timeForDismiss) {
+                    shared.helper.dismissAlert(for: alertView, with: options.position, on: viewController)
+                }
+            }
+   
         }
     }
     
