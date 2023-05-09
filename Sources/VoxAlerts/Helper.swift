@@ -16,6 +16,18 @@ final class AlertHelper {
     
     var initialConstraint: NSLayoutConstraint?
     
+    var alertView: VoxView
+    
+    var position: VoxOptions.AlertPosition
+    
+    var viewController: UIViewController
+    
+    public init(alertView: VoxView, position: VoxOptions.AlertPosition, viewController: UIViewController) {
+        self.alertView = alertView
+        self.position = position
+        self.viewController = viewController
+    }
+    
     
     public func makeFeedback(_ option: VoxOptions.FeedbackType? = VoxOptions.FeedbackType.none) {
         if let feedbackType = option?.value {
@@ -24,7 +36,7 @@ final class AlertHelper {
         }
     }
     
-    public func setupPosition(for alertView: VoxView, with position: VoxOptions.AlertPosition, on viewController: UIViewController) {
+    public func setupPosition() {
         viewController.view.addSubview(alertView)
         alertView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -47,44 +59,54 @@ final class AlertHelper {
         }
     }
     
-    public func makeAnimation(for alertView: VoxView, with position: VoxOptions.AlertPosition, on viewController: UIViewController) {
+    public func makeAnimation() {
         switch(position) {
         case .top:
             if let topSafeArea = viewController.view?.safeAreaLayoutGuide.topAnchor {
                 UIView.animate(withDuration: 0.3, delay: 0.0, options: [.curveEaseOut], animations: {
                     self.initialConstraint?.isActive = false
-                    self.topConstraint = alertView.bottomAnchor.constraint(equalTo: topSafeArea, constant: alertView.frame.height)
+                    self.topConstraint = self.alertView.bottomAnchor.constraint(equalTo: topSafeArea, constant: self.alertView.frame.height)
                     self.topConstraint?.isActive = true
-                    viewController.view.layoutIfNeeded()
+                    self.viewController.view.layoutIfNeeded()
                 })
             }
         case .bottom:
             if let bottomSafeArea = viewController.view?.safeAreaLayoutGuide.bottomAnchor {
                 UIView.animate(withDuration: 0.3, delay: 0.0, options: [.curveEaseOut], animations: {
                     self.initialConstraint?.isActive = false
-                    self.bottomConstraint = alertView.bottomAnchor.constraint(equalTo: bottomSafeArea, constant: 0)
+                    self.bottomConstraint = self.alertView.bottomAnchor.constraint(equalTo: bottomSafeArea, constant: 0)
                     self.bottomConstraint?.isActive = true
-                    viewController.view.layoutIfNeeded()
+                    self.viewController.view.layoutIfNeeded()
                 })
             }
         }
     }
-//    
-//    public func dismissAlert() {
-//        
-//    }
     
-    public func dismissAlert(for alertView: VoxView, with position: VoxOptions.AlertPosition, on viewController: UIViewController) {
+    public func addDismissSwipe() {
         switch(position) {
+        case .top:
+            let swipe = UISwipeGestureRecognizer(target: self, action: #selector(dismissAlert))
+            swipe.direction = .up
+            alertView.addGestureRecognizer(swipe)
+        case .bottom:
+            let swipe = UISwipeGestureRecognizer(target: self, action: #selector(dismissAlert))
+            swipe.direction = .down
+            alertView.addGestureRecognizer(swipe)
+        }
+    }
+    
+    @objc
+    public func dismissAlert() {
+        switch(self.position) {
         case .top:
             if let top = viewController.view?.topAnchor {
                 UIView.animate(withDuration: 0.3, delay: 0.0, options: [.curveEaseOut], animations: { [weak self] in
                     self?.topConstraint?.isActive = false
                     self?.initialConstraint?.isActive = true
-                    alertView.bottomAnchor.constraint(equalTo: top, constant: 0).isActive = true
-                    viewController.view.layoutIfNeeded()
+                    self?.alertView.bottomAnchor.constraint(equalTo: top, constant: 0).isActive = true
+                    self?.viewController.view.layoutIfNeeded()
                 }) { _ in
-                    alertView.removeFromSuperview()
+                    self.alertView.removeFromSuperview()
                 }
             }
         case .bottom:
@@ -92,10 +114,10 @@ final class AlertHelper {
                 UIView.animate(withDuration: 0.3, delay: 0.0, options: [.curveEaseOut], animations: { [weak self] in
                     self?.bottomConstraint?.isActive = false
                     self?.initialConstraint?.isActive = true
-                    alertView.bottomAnchor.constraint(equalTo: bottom, constant: alertView.frame.height).isActive = true
-                    viewController.view.layoutIfNeeded()
+                    self?.alertView.bottomAnchor.constraint(equalTo: bottom, constant: self?.alertView.frame.height ?? 0).isActive = true
+                    self?.viewController.view.layoutIfNeeded()
                 }) { _ in
-                    alertView.removeFromSuperview()
+                    self.alertView.removeFromSuperview()
                 }
             }
         }
