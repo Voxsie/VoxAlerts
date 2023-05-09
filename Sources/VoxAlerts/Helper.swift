@@ -22,10 +22,13 @@ final class AlertHelper {
     
     var viewController: UIViewController
     
+    var isNeedToRemoveFromSuperView: Bool = true
+    
     public init(alertView: VoxView, options: VoxOptions, viewController: UIViewController) {
         self.alertView = alertView
         self.options = options
         self.viewController = viewController
+        
     }
     
     
@@ -105,9 +108,10 @@ final class AlertHelper {
                     self?.initialConstraint?.isActive = true
                     self?.alertView.bottomAnchor.constraint(equalTo: top, constant: 0).isActive = true
                     self?.viewController.view.layoutIfNeeded()
-                }) { _ in
-                    if self.options.duration.getTime() < 0 {
-                        self.alertView.removeFromSuperview()
+                }) { [weak self] _ in
+                    if self?.isNeedToRemoveFromSuperView == true {
+                        self?.alertView.removeFromSuperview()
+                        self?.isNeedToRemoveFromSuperView = false
                     }
                 }
             }
@@ -118,12 +122,14 @@ final class AlertHelper {
                     self?.initialConstraint?.isActive = true
                     self?.alertView.bottomAnchor.constraint(equalTo: bottom, constant: self?.alertView.frame.height ?? 0).isActive = true
                     self?.viewController.view.layoutIfNeeded()
-                }) { _ in
-                    if self.options.duration.getTime() < 0 {
-                        self.alertView.removeFromSuperview()
+                }) { [weak self] _ in
+                    if self?.isNeedToRemoveFromSuperView == true {
+                        self?.alertView.removeFromSuperview()
+                        self?.isNeedToRemoveFromSuperView = false
                     }
                 }
             }
         }
     }
 }
+
