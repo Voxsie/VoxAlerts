@@ -18,13 +18,13 @@ final class AlertHelper {
     
     var alertView: VoxView
     
-    var position: VoxOptions.AlertPosition
+    var options: VoxOptions
     
     var viewController: UIViewController
     
-    public init(alertView: VoxView, position: VoxOptions.AlertPosition, viewController: UIViewController) {
+    public init(alertView: VoxView, options: VoxOptions, viewController: UIViewController) {
         self.alertView = alertView
-        self.position = position
+        self.options = options
         self.viewController = viewController
     }
     
@@ -45,7 +45,7 @@ final class AlertHelper {
             alertView.heightAnchor.constraint(greaterThanOrEqualToConstant: 50)
         ])
         
-        switch(position) {
+        switch(options.position) {
         case .top:
             if let top = viewController.view?.topAnchor {
                 self.initialConstraint = alertView.bottomAnchor.constraint(equalTo: top, constant: 0)
@@ -60,7 +60,7 @@ final class AlertHelper {
     }
     
     public func makeAnimation() {
-        switch(position) {
+        switch(options.position) {
         case .top:
             if let topSafeArea = viewController.view?.safeAreaLayoutGuide.topAnchor {
                 UIView.animate(withDuration: 0.3, delay: 0.0, options: [.curveEaseOut], animations: {
@@ -83,7 +83,7 @@ final class AlertHelper {
     }
     
     public func addDismissSwipe() {
-        switch(position) {
+        switch(options.position) {
         case .top:
             let swipe = UISwipeGestureRecognizer(target: self, action: #selector(dismissAlert))
             swipe.direction = .up
@@ -97,7 +97,7 @@ final class AlertHelper {
     
     @objc
     public func dismissAlert() {
-        switch(self.position) {
+        switch(self.options.position) {
         case .top:
             if let top = viewController.view?.topAnchor {
                 UIView.animate(withDuration: 0.3, delay: 0.0, options: [.curveEaseOut], animations: { [weak self] in
@@ -106,7 +106,9 @@ final class AlertHelper {
                     self?.alertView.bottomAnchor.constraint(equalTo: top, constant: 0).isActive = true
                     self?.viewController.view.layoutIfNeeded()
                 }) { _ in
-                    self.alertView.removeFromSuperview()
+                    if self.options.duration.getTime() < 0 {
+                        self.alertView.removeFromSuperview()
+                    }
                 }
             }
         case .bottom:

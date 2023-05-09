@@ -24,7 +24,7 @@ public struct VoxAlert {
                                        text: text,
                                        customImage: image)
             
-            let helper = AlertHelper(alertView: alertView, position: options.position, viewController: viewController)
+            let helper = AlertHelper(alertView: alertView, options: options, viewController: viewController)
             
             helper.setupPosition()
             
@@ -42,7 +42,6 @@ public struct VoxAlert {
                     helper.dismissAlert()
                 }
             }
-   
         }
     }
     
