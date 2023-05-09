@@ -13,4 +13,9 @@ class Assets {
         let bundle = Bundle.module
         return UIImage(named: name, in: bundle, compatibleWith: nil)
     }
+    
+    static func getColor(named name: String) -> UIColor? {
+        let bundle = Bundle.module
+        return UIColor(named: name, in: bundle, compatibleWith: nil)
+    }
 }

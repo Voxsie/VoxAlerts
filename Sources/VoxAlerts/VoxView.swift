@@ -60,10 +60,12 @@ final public class VoxView: UIView {
             logoImageView.image = customImage != nil ? customImage : Assets.getImage(named: "alertError")
             textLabel.text = text
         case .system, .none:
-            backgroundColor = .systemBackground
+            backgroundColor = Assets.getColor(named: "VoxAlertSystemBackgroundColor")
             logoImageView.image = customImage != nil ? customImage : Assets.getImage(named: "alertSystem")
             textLabel.text = text
-            textLabel.textColor = .label
+            let textColor = Assets.getColor(named: "VoxAlertSystemTextColor")
+            titleLabel.textColor = textColor
+            textLabel.textColor = textColor
         }
         if title != nil {
             titleLabel.text = title
