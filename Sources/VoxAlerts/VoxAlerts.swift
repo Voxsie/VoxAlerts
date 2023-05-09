@@ -24,15 +24,17 @@ public struct VoxAlert {
                                        text: text,
                                        customImage: image)
             
-            var helper = AlertHelper(alertView: alertView, position: options.position, viewController: viewController)
+            let helper = AlertHelper(alertView: alertView, position: options.position, viewController: viewController)
             
             helper.setupPosition()
-//            
+            
             helper.makeFeedback(options.hapticFeedback)
-//
+            
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 helper.makeAnimation()
             }
+            
+            helper.addDismissSwipe()
             
             let timeForDismiss = options.duration.getTime()
             if timeForDismiss > 0 {
