@@ -14,6 +14,8 @@ final class AlertHelper {
     
     var bottomConstraint: NSLayoutConstraint?
     
+    var temp: NSLayoutConstraint?
+    
     
     public func makeFeedback(_ option: VoxOptions.FeedbackType? = VoxOptions.FeedbackType.none) {
         if let feedbackType = option?.value {
@@ -34,7 +36,8 @@ final class AlertHelper {
         switch(position) {
         case .top:
             if let top = viewController.view?.topAnchor {
-                alertView.bottomAnchor.constraint(equalTo: top, constant: 0).isActive = true
+                temp = alertView.bottomAnchor.constraint(equalTo: top, constant: 0)
+                temp?.isActive = true
             }
         case .bottom:
             if let bottom = viewController.view?.bottomAnchor {
@@ -48,6 +51,7 @@ final class AlertHelper {
         case .top:
             if let topSafeArea = viewController.view?.safeAreaLayoutGuide.topAnchor {
                 UIView.animate(withDuration: 0.3, delay: 0.0, options: [.curveEaseOut], animations: {
+                    self.temp?.isActive = false
                     self.topConstraint = alertView.bottomAnchor.constraint(equalTo: topSafeArea, constant: alertView.frame.height)
                     self.topConstraint?.isActive = true
                     viewController.view.layoutIfNeeded()
@@ -116,6 +120,7 @@ final class AlertHelper {
             if let top = viewController.view?.topAnchor {
                 UIView.animate(withDuration: 0.3, delay: 0.0, options: [.curveEaseOut], animations: { [weak self] in
                     self?.topConstraint?.isActive = false
+                    self?.temp?.isActive = true
                     alertView.bottomAnchor.constraint(equalTo: top, constant: 0).isActive = true
                     viewController.view.layoutIfNeeded()
                 }) { _ in
