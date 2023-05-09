@@ -28,7 +28,7 @@ final class AlertHelper {
         NSLayoutConstraint.activate([
             alertView.leadingAnchor.constraint(equalTo: viewController.view.leadingAnchor, constant: 16),
             alertView.trailingAnchor.constraint(equalTo: viewController.view.trailingAnchor, constant: -16),
-            alertView.heightAnchor.constraint(equalToConstant: 50)
+            alertView.heightAnchor.constraint(greaterThanOrEqualToConstant: 50)
         ])
         
         switch(position) {
@@ -54,9 +54,10 @@ final class AlertHelper {
                 })
             }
         case .bottom:
-            if let bottom = viewController.view?.bottomAnchor {
-                UIView.animate(withDuration: 0.5, animations: {
-                    alertView.bottomAnchor.constraint(equalTo: bottom, constant: 0).isActive = true
+            if let bottomSafeArea = viewController.view?.safeAreaLayoutGuide.bottomAnchor {
+                UIView.animate(withDuration: 0.3, delay: 0.0, options: [.curveEaseOut], animations: {
+                    self.bottomConstraint = alertView.bottomAnchor.constraint(equalTo: bottomSafeArea, constant: 0)
+                    self.bottomConstraint?.isActive = true
                     viewController.view.layoutIfNeeded()
                 })
             }
