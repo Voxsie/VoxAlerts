@@ -72,9 +72,9 @@ final class AlertHelper {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             
-            if let bottom = viewController.view?.bottomAnchor {
-                UIView.animate(withDuration: 0.5, animations: {
-                    alertView.bottomAnchor.constraint(equalTo: bottom, constant: 0).isActive = true
+            if let bottomSafeArea = viewController.view?.safeAreaLayoutGuide.bottomAnchor {
+                UIView.animate(withDuration: 0.3, animations: {
+                    alertView.bottomAnchor.constraint(equalTo: bottomSafeArea, constant: 0).isActive = true
                     viewController.view.layoutIfNeeded()
                 })
             }
@@ -82,8 +82,8 @@ final class AlertHelper {
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             if let bottom = viewController.view?.bottomAnchor {
-                UIView.animate(withDuration: 0.5, animations: {
-                    alertView.bottomAnchor.constraint(equalTo: bottom, constant: 69).isActive = true
+                UIView.animate(withDuration: 0.3, animations: {
+                    alertView.bottomAnchor.constraint(equalTo: bottom, constant: alertView.frame.height).isActive = true
                     viewController.view.layoutIfNeeded()
                     alertView.removeFromSuperview()
                 })
