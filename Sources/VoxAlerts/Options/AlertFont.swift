@@ -13,5 +13,10 @@ public extension VoxOptions {
     struct AlertFont {
         var titleFont: UIFont = .systemFont(ofSize: 16, weight: .semibold)
         var subtitleFont: UIFont = .systemFont(ofSize: 16, weight: .regular)
+        
+        init(titleFont: UIFont, subtitleFont: UIFont) {
+            self.titleFont = titleFont
+            self.subtitleFont = subtitleFont
+        }
     }
 }
