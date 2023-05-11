@@ -32,7 +32,8 @@ public struct VoxOptions {
                 backgroundColor: UIColor? = nil,
                 duration: VoxOptions.AlertDuration = VoxOptions.AlertDuration.time(3),
                 textColor: UIColor? = nil,
-                textFont: VoxOptions.AlertFont? = nil, animation: UIView.AnimationOptions)
+                textFont: VoxOptions.AlertFont? = nil,
+                animation: UIView.AnimationOptions? = .curveEaseOut)
     {
         self.type = type
         self.hapticFeedback = hapticFeedback
@@ -41,7 +42,7 @@ public struct VoxOptions {
         self.duration = duration
         self.textColor = textColor
         self.textFont = textFont
-        self.animation = animation
+        self.animation = animation ?? .curveEaseOut
     }
     
     public init() {
