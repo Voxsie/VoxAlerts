@@ -66,7 +66,7 @@ final class AlertHelper {
         switch(options.position) {
         case .top:
             if let topSafeArea = viewController.view?.safeAreaLayoutGuide.topAnchor {
-                UIView.animate(withDuration: 0.3, delay: 0.0, options: [.curveEaseOut], animations: {
+                UIView.animate(withDuration: 0.3, delay: 0.0, options: [options.animation], animations: {
                     self.initialConstraint?.isActive = false
                     self.topConstraint = self.alertView.bottomAnchor.constraint(equalTo: topSafeArea, constant: self.alertView.frame.height)
                     self.topConstraint?.isActive = true
@@ -75,7 +75,7 @@ final class AlertHelper {
             }
         case .bottom:
             if let bottomSafeArea = viewController.view?.safeAreaLayoutGuide.bottomAnchor {
-                UIView.animate(withDuration: 0.3, delay: 0.0, options: [.curveEaseOut], animations: {
+                UIView.animate(withDuration: 0.3, delay: 0.0, options: [options.animation], animations: {
                     self.initialConstraint?.isActive = false
                     self.bottomConstraint = self.alertView.bottomAnchor.constraint(equalTo: bottomSafeArea, constant: 0)
                     self.bottomConstraint?.isActive = true
@@ -104,7 +104,7 @@ final class AlertHelper {
             switch(self.options.position) {
             case .top:
                 if let top = viewController.view?.topAnchor {
-                    UIView.animate(withDuration: 0.3, delay: 0.0, options: [.curveEaseOut], animations: { [weak self] in
+                    UIView.animate(withDuration: 0.3, delay: 0.0, options: [options.animation], animations: { [weak self] in
                         self?.topConstraint?.isActive = false
                         self?.initialConstraint?.isActive = true
                         self?.alertView.bottomAnchor.constraint(equalTo: top, constant: 0).isActive = true
@@ -118,7 +118,7 @@ final class AlertHelper {
                 }
             case .bottom:
                 if let bottom = viewController.view?.bottomAnchor {
-                    UIView.animate(withDuration: 0.3, delay: 0.0, options: [.curveEaseOut], animations: { [weak self] in
+                    UIView.animate(withDuration: 0.3, delay: 0.0, options: [options.animation], animations: { [weak self] in
                         self?.bottomConstraint?.isActive = false
                         self?.initialConstraint?.isActive = true
                         self?.alertView.bottomAnchor.constraint(equalTo: bottom, constant: self?.alertView.frame.height ?? 0).isActive = true
