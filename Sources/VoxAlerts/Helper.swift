@@ -16,7 +16,7 @@ final class AlertHelper {
     
     var initialConstraint: NSLayoutConstraint?
     
-    var alertView: VoxView
+    var alertView: UIView
     
     var options: VoxOptions
     
@@ -24,7 +24,7 @@ final class AlertHelper {
     
     var isNeedToRemoveFromSuperView: Bool = true
     
-    public init(alertView: VoxView, options: VoxOptions, viewController: UIViewController) {
+    public init(alertView: UIView, options: VoxOptions, viewController: UIViewController) {
         self.alertView = alertView
         self.options = options
         self.viewController = viewController

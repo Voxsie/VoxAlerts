@@ -10,8 +10,6 @@ public struct VoxAlert {
     
     var image: UIImage? = nil
     
-    weak var viewController: UIViewController? = nil
-    
     public init() {
     }
     
@@ -25,6 +23,31 @@ public struct VoxAlert {
                                        customImage: image)
             
             let helper = AlertHelper(alertView: alertView, options: options, viewController: viewController)
+            
+            helper.setupPosition()
+            
+            helper.makeFeedback(options.hapticFeedback)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                helper.makeAnimation()
+            }
+            
+            helper.addDismissSwipe()
+            
+            let timeForDismiss = options.duration.getTime()
+            if timeForDismiss > 0 {
+                DispatchQueue.main.asyncAfter(deadline: .now() + timeForDismiss) {
+                    helper.dismissAlert()
+                }
+            }
+        }
+    }
+    
+    
+    public static func showView(_ view: UIView, with options: VoxOptions = VoxOptions()) {
+        if let viewController = shared.getPresentingViewController() {
+            
+            let helper = AlertHelper(alertView: view, options: options, viewController: viewController)
             
             helper.setupPosition()
             
