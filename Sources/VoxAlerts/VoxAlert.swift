@@ -51,13 +51,14 @@ public struct VoxAlert {
             
             helper.setupPosition()
             
+            helper.addDismissSwipe()
+            
             helper.makeFeedback(options.hapticFeedback)
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 helper.makeAnimation()
             }
             
-            helper.addDismissSwipe()
             
             let timeForDismiss = options.duration.getTime()
             if timeForDismiss > 0 {
