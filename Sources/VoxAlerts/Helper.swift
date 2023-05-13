@@ -86,6 +86,7 @@ final class AlertHelper {
     }
     
     public func addDismissSwipe() {
+        alertView.isUserInteractionEnabled = true
         switch(options.position) {
         case .top:
             let swipe = UISwipeGestureRecognizer(target: self, action: #selector(dismissAlert))
