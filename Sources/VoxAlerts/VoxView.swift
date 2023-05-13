@@ -1,6 +1,6 @@
 //
 //  File.swift
-//  
+//
 //
 //  Created by Илья Желтиков on 08.04.2023.
 //
@@ -78,6 +78,10 @@ final public class VoxView: UIView {
         
         if options.textFont?.subtitleFont != nil {
             textLabel.font = options.textFont?.subtitleFont
+        }
+        
+        if options.backgroundColor != nil {
+            backgroundColor = options.backgroundColor
         }
         
         stackLabel.addArrangedSubview(textLabel)
