@@ -35,13 +35,13 @@ public struct VoxAlert {
             }
             
             helper.addDismissSwipe()
-            
-            let timeForDismiss = options.duration.getTime()
-            if timeForDismiss > 0 {
-                DispatchQueue.main.asyncAfter(deadline: .now() + timeForDismiss) {
-                    helper.dismissAlert()
-                }
-            }
+//            
+//            let timeForDismiss = options.duration.getTime()
+//            if timeForDismiss > 0 {
+//                DispatchQueue.main.asyncAfter(deadline: .now() + timeForDismiss) {
+//                    helper.dismissAlert()
+//                }
+//            }
         }
     }
     
