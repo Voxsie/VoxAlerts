@@ -65,6 +65,10 @@ public struct VoxAlert {
                 DispatchQueue.main.asyncAfter(deadline: .now() + timeForDismiss) {
                     helper.dismissAlert()
                 }
+            } else {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1000) {
+                    helper.dismissAlert()
+                }
             }
         }
     }
