@@ -112,6 +112,7 @@ final class AlertHelper {
                         self?.viewController.view.layoutIfNeeded()
                     }) { [weak self] _ in
                         if self?.isNeedToRemoveFromSuperView == true {
+                            self?.alertView.gestureRecognizers = nil
                             self?.alertView.removeFromSuperview()
                             self?.isNeedToRemoveFromSuperView = false
                         }
@@ -126,6 +127,7 @@ final class AlertHelper {
                         self?.viewController.view.layoutIfNeeded()
                     }) { [weak self] _ in
                         if self?.isNeedToRemoveFromSuperView == true {
+                            self?.alertView.gestureRecognizers = nil
                             self?.alertView.removeFromSuperview()
                             self?.isNeedToRemoveFromSuperView = false
                         }
