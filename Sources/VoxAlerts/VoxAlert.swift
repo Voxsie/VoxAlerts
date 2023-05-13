@@ -34,13 +34,15 @@ public struct VoxAlert {
                 helper.makeAnimation()
             }
             
-            helper.addDismissSwipe()
-            
             let timeForDismiss = options.duration.getTime()
             if timeForDismiss > 0 {
                 DispatchQueue.main.asyncAfter(deadline: .now() + timeForDismiss) {
                     helper.dismissAlert()
                 }
+            } else {
+                helper.isNeedToRemoveFromSuperView = false
+                helper.dismissAlert()
+                helper.isNeedToRemoveFromSuperView = true
             }
         }
     }
@@ -67,6 +69,10 @@ public struct VoxAlert {
                 DispatchQueue.main.asyncAfter(deadline: .now() + timeForDismiss) {
                     helper.dismissAlert()
                 }
+            } else {
+                helper.isNeedToRemoveFromSuperView = false
+                helper.dismissAlert()
+                helper.isNeedToRemoveFromSuperView = true
             }
         }
     }
