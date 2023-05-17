@@ -106,7 +106,9 @@ final class AlertHelper {
     
     @objc
     public func dismissAlert() {
+        
         guard let viewController = viewController else { return }
+        
         if isNeedToRemoveFromSuperView {
             switch(self.options.position) {
             case .top:
