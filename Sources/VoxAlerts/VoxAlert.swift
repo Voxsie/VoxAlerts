@@ -35,15 +35,15 @@ public struct VoxAlert {
             }
             
             let timeForDismiss = options.duration.getTime()
-//            if timeForDismiss > 0 {
-//                DispatchQueue.main.asyncAfter(deadline: .now() + timeForDismiss) {
-//                    helper.dismissAlert()
-//                }
-//            } else {
-//                DispatchQueue.main.asyncAfter(deadline: .now() + 10000) {
-//                    helper.dismissAlert()
-//                }
-//            }
+            if timeForDismiss > 0 {
+                DispatchQueue.main.asyncAfter(deadline: .now() + timeForDismiss) {
+                    helper.dismissAlert()
+                }
+            } else {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 10000) {
+                    helper.dismissAlert()
+                }
+            }
         }
     }
     
