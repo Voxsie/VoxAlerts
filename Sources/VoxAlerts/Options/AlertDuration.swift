@@ -18,7 +18,7 @@ public extension VoxOptions {
             case .time(let value):
                 return value
             case .byDismiss:
-                return -1.0
+                return 10000
             }
         }
     }
