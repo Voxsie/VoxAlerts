@@ -24,6 +24,7 @@ final public class VoxView: UIView {
         label.textAlignment = .left
         label.numberOfLines = 0
         label.text = ""
+        label.isUserInteractionEnabled = true
         return label
     }()
     
@@ -35,15 +36,17 @@ final public class VoxView: UIView {
         label.textAlignment = .left
         label.numberOfLines = 0
         label.text = ""
+        label.isUserInteractionEnabled = true
         return label
     }()
     
     fileprivate let stackLabel: UIStackView = {
         let stack = UIStackView()
-         stack.translatesAutoresizingMaskIntoConstraints = false
-         stack.axis = .vertical
-         stack.spacing = 4
-         stack.distribution = .fill
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.axis = .vertical
+        stack.spacing = 4
+        stack.distribution = .fill
+        stack.isUserInteractionEnabled = true
         return stack
     }()
     
@@ -95,7 +98,7 @@ final public class VoxView: UIView {
         self.layer.cornerRadius = 10
         
         translatesAutoresizingMaskIntoConstraints = false
- 
+        
         addSubview(logoImageView)
         NSLayoutConstraint.activate([
             logoImageView.heightAnchor.constraint(equalToConstant: 24),
@@ -122,6 +125,6 @@ final public class VoxView: UIView {
         
         textLabel.setLineSpacing(lineSpacing: 0, lineHeightMultiple: 1.25)
         textLabel.lineBreakMode = .byWordWrapping
-
+        
     }
 }
