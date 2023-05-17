@@ -94,12 +94,10 @@ final class AlertHelper {
         alertView?.isUserInteractionEnabled = true
         switch(options.position) {
         case .top:
-            let swipe = UISwipeGestureRecognizer(target: alertView, action: #selector(dismissAlert))
-            swipe.direction = .up
+            let swipe = UIPanGestureRecognizer(target: self, action: #selector(dismissAlert))
             alertView?.addGestureRecognizer(swipe)
         case .bottom:
-            let swipe = UISwipeGestureRecognizer(target: alertView, action: #selector(dismissAlert))
-            swipe.direction = .down
+            let swipe = UIPanGestureRecognizer(target: self, action: #selector(dismissAlert))
             alertView?.addGestureRecognizer(swipe)
         }
     }
