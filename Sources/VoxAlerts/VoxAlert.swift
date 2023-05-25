@@ -55,9 +55,6 @@ public struct VoxAlert {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 helper.makeAnimation()
             }
-            
-            
-            let timeForDismiss = options.duration.getTime()
 
             DispatchQueue.main.asyncAfter(deadline: .now() + options.duration.getTime()) {
                 helper.dismissAlert()

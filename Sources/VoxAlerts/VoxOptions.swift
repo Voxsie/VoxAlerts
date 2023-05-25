@@ -14,7 +14,7 @@ public struct VoxOptions {
     
     public var hapticFeedback: VoxOptions.FeedbackType = .success
     
-    public var position: VoxOptions.AlertPosition = .bottom
+    public var position: VoxOptions.AlertPosition = .top
     
     public var backgroundColor: UIColor? = nil
     
