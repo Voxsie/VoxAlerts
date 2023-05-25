@@ -87,6 +87,11 @@ final public class VoxView: UIView {
             backgroundColor = options.backgroundColor
         }
         
+        if options.textColor != nil {
+            titleLabel.textColor = options.textColor
+            textLabel.textColor = options.textColor
+        }
+        
         stackLabel.addArrangedSubview(textLabel)
         setupView()
     }
